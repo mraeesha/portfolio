@@ -16,9 +16,8 @@ const projectInfo = {
       'Defined product vision and go-to-market plan for a smart home assistant. Covered AI features, 5C marketing, risk management, and strategies for personalization and wellness.',
   },
   'Exploratory-Analysis-for-origin-of-wine': {
-    displayName: 'Exploratory-Analysis-for-origin-of-wine-using-R',
+    displayName: 'Exploratory-Analysis-for-origin-of-wine-R',
     hideLanguage: true,
-    hideDescription: true,
   },
   'NVIDIA-Financial-Forecasting': {
     description:
@@ -52,14 +51,13 @@ async function loadProjects() {
               : '';
         const card = document.createElement('div');
         card.className = 'project-card';
-        const rawDescription = info.hideDescription
+        const description = info.hideDescription
           ? ''
-          : info.description || repo.description;
-        const description =
-          rawDescription && rawDescription !== 'No description provided.'
-            ? rawDescription
+          : info.description ?? repo.description ?? '';
+        const descriptionHtml =
+          description && description !== 'No description provided.'
+            ? `<p>${description}</p>`
             : '';
-        const descriptionHtml = description ? `<p>${description}</p>` : '';
         card.innerHTML = `
           <h3>${name}</h3>
           ${tagHtml}
