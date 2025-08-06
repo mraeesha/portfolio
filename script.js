@@ -11,8 +11,9 @@ async function loadProjects() {
         card.className = 'project-card';
         card.innerHTML = `
           <h3>${repo.name}</h3>
+          ${repo.language ? `<span class="tag">${repo.language}</span>` : ''}
           <p>${repo.description || 'No description provided.'}</p>
-          <a href="${repo.html_url}" target="_blank" rel="noopener">View on GitHub</a>
+          <a href="${repo.html_url}" target="_blank" rel="noopener" class="btn">View on GitHub</a>
         `;
         container.appendChild(card);
       });
