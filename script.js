@@ -16,10 +16,9 @@ const projectInfo = {
       'Defined product vision and go-to-market plan for a smart home assistant. Covered AI features, 5C marketing, risk management, and strategies for personalization and wellness.',
   },
   'Exploratory-Analysis-for-origin-of-wine': {
-    description:
-      'Used EDA to identify key chemical features predicting wine origin. Found alcohol concentration most predictive, followed by color intensity.',
     displayName: 'Exploratory-Analysis-for-origin-of-wine-using-R',
     hideLanguage: true,
+    hideDescription: true,
   },
   'NVIDIA-Financial-Forecasting': {
     description:
@@ -51,20 +50,22 @@ async function loadProjects() {
           : repo.language
               ? `<span class="tag">${repo.language}</span>`
               : '';
-          const card = document.createElement('div');
-          card.className = 'project-card';
-          const rawDescription = info.description || repo.description;
-          const description =
-            rawDescription && rawDescription !== 'No description provided.'
-              ? rawDescription
-              : '';
-          const descriptionHtml = description ? `<p>${description}</p>` : '';
-          card.innerHTML = `
-            <h3>${name}</h3>
-            ${tagHtml}
-            ${descriptionHtml}
-            <a href="${repo.html_url}" target="_blank" rel="noopener" class="btn">View on GitHub</a>
-          `;
+        const card = document.createElement('div');
+        card.className = 'project-card';
+        const rawDescription = info.hideDescription
+          ? ''
+          : info.description || repo.description;
+        const description =
+          rawDescription && rawDescription !== 'No description provided.'
+            ? rawDescription
+            : '';
+        const descriptionHtml = description ? `<p>${description}</p>` : '';
+        card.innerHTML = `
+          <h3>${name}</h3>
+          ${tagHtml}
+          ${descriptionHtml}
+          <a href="${repo.html_url}" target="_blank" rel="noopener" class="btn">View on GitHub</a>
+        `;
         container.appendChild(card);
       });
   } catch (err) {
