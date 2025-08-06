@@ -53,10 +53,12 @@ async function loadProjects() {
               : '';
         const card = document.createElement('div');
         card.className = 'project-card';
+        const description = info.description || repo.description;
+        const descriptionHtml = description ? `<p>${description}</p>` : '';
         card.innerHTML = `
           <h3>${name}</h3>
           ${tagHtml}
-          <p>${info.description || repo.description || 'No description provided.'}</p>
+          ${descriptionHtml}
           <a href="${repo.html_url}" target="_blank" rel="noopener" class="btn">View on GitHub</a>
         `;
         container.appendChild(card);
